@@ -2,6 +2,14 @@ version: "3.3"
 
 services: 
     postgres:
-        image: postgres
-        environment: 
-            - POSTGRES_PASSWORD=${PGPASSWORD}
+        build:
+            context: .
+            dockerfile: ./postgres.yml
+            args:
+                - POSTGRES_VERSION=${POSTGRES_VERSION}
+                - POSTGRES_USER=${POSTGRES_USER}
+                - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+        # environment: 
+        #     - POSTGRES_VERSION=12
+        #     - POSTGRES_USER=postgres
+        #     - POSTGRES_PASSWORD=postgres
