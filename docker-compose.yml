@@ -1,7 +1,7 @@
 version: "3.3"
 
 services: 
-    postgres:
+    postgres1:
         build:
             context: .
             dockerfile: ./postgres.yml
@@ -9,7 +9,15 @@ services:
                 - POSTGRES_VERSION=${POSTGRES_VERSION}
                 - POSTGRES_USER=${POSTGRES_USER}
                 - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-        # environment: 
-        #     - POSTGRES_VERSION=12
-        #     - POSTGRES_USER=postgres
-        #     - POSTGRES_PASSWORD=postgres
+        ports: 
+            - "8000:5432"
+    postgres2:
+        build:
+            context: .
+            dockerfile: ./postgres.yml
+            args:
+                - POSTGRES_VERSION=${POSTGRES_VERSION}
+                - POSTGRES_USER=${POSTGRES_USER}
+                - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+        ports: 
+            - "8001:5432"
